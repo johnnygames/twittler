@@ -3,3 +3,11 @@ body {
 	background-image: url('cloudbg.jpg');
 	background-repeat: no-repeat;
 }
+
+.header {
+	background-color: black;
+}
+
+h1 {
+	color: white;
+}
