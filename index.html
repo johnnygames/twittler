@@ -12,7 +12,15 @@
   			<h1>Twittler</h1>
   		</div>
   	</div>
-  	
+  	<div class="tweet-updates">
+  		<a href='#'>
+  		<h4 id="updater">	
+  		</h4>
+  		</a>	
+  	</div>
+  	<div class="tweet-list">
+  		
+  	</div>
 
   </div>
     <script>
@@ -23,9 +31,9 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
+          var $tweet = $('<div class="tweet"></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          $tweet.appendTo('.tweet-list');
           index -= 1;
         }
 
@@ -35,11 +43,26 @@
         		var checkIfNewTweets = streams.home.length - 1;
         		if (checkIfNewTweets > index) {
         			var tweetListUpdated = checkIfNewTweets - index;
-        			console.log('There are ' + tweetListUpdated + ' new tweets');
+        			$('#updater').text('There are ' + tweetListUpdated + ' new tweets!');
         		}
         	}, 5000);
         }
         tweetChecker();
+
+        $('#updater').on('click', function(event) {
+        	pushTweets = function () {
+      			var checkIfNewTweets = streams.home.length - 1;
+      			if (checkIfNewTweets > index) {
+      				var tweet = streams.home[checkIfNewTweets];
+          			var $tweet = $('<div></div>');
+          			$tweet.text('@' + tweet.user + ': ' + tweet.message);
+          			$tweet.appendTo($body);
+          			checkIfNewTweets -= 1;
+      			}
+       	}
+        $('updater').slideUp();
+        });
+
       });
 
 
