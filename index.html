@@ -29,7 +29,20 @@
           index -= 1;
         }
 
+        var newTweets;
+        var tweetChecker = function() {
+        	newTweets = setInterval(function() {
+        		var checkIfNewTweets = streams.home.length - 1;
+        		if (checkIfNewTweets > index) {
+        			var tweetListUpdated = checkIfNewTweets - index;
+        			console.log('There are ' + tweetListUpdated + ' new tweets');
+        		}
+        	}, 5000);
+        }
+        tweetChecker();
       });
+
+
 
     </script>
   </body>
