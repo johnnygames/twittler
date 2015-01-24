@@ -28,26 +28,44 @@
       $(document).ready(function(){ //
         var $body = $('body');
 
-        var index = streams.home.length - 1;
+        var index = streams.home.length - 1; //When the page is loaded ten objects are created here
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div class="tweet"></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
           $tweet.appendTo('.tweet-list');
           index -= 1;
         }
 
-        var newTweets;
-        var tweetChecker = function() {
-        	newTweets = setInterval(function() {
-        		var checkIfNewTweets = streams.home.length - 1;
-        		if (checkIfNewTweets > index) {
-        			var tweetListUpdated = checkIfNewTweets - index;
-        			$('#updater').text('There are ' + tweetListUpdated + ' new tweets!');
-        		}
-        	}, 5000);
+        var counter = 11; // At page load there are ten objects created, we need to start at iterating at 11
+        var pushSingleTweet = function() {
+        	var tweetList = streams.home.length - 1;
+        	console.log('cumulative ' + tweetList);
+        	console.log('counter ' + counter)
+        	var alreadyDone = 0;
+        	for (counter; tweetList > counter; tweetList--) {
+        		var tweet = streams.home[tweetList];
+          		var $tweet = $('<div class="tweet"></div>');
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.prependTo('.tweet-list');
+          		alreadyDone++;
+        	}
+        	counter += alreadyDone;
         }
-        tweetChecker();
+
+        setInterval(pushSingleTweet, 2000);
+
+        // var tweetChecker = function() {
+        // 	var newTweets = setInterval(function() {
+        // 		var checkIfNewTweets = streams.home.length - 1;
+        // 		if (checkIfNewTweets > index) {
+        // 			var tweetListUpdated = checkIfNewTweets - index;
+        // 			$('#updater').text('There are ' + tweetListUpdated + ' new tweets!');
+        // 		}
+        // 	}, 5000);
+        // 	$('.tweet-updates').slideDown();
+        // }
+        // tweetChecker();
 
         $('#updater').on('click', function() {
        
@@ -61,7 +79,8 @@
       			$tweet.prependTo('.tweet-list');
           		readyTweets -= 1; 
       		};
-
+      		$('#updater').text('');
+      		clearInterval(tweetChecker);
       			
        	});
 
