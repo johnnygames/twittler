@@ -11,15 +11,27 @@
   		<div class="title-text">
   			<h1>Twittler</h1>
   		</div>
-  	</div>
-  	<div class="tweet-updates">
-  		<a href='#'>
-  		<h4 id="updater">	
-  		</h4>
-  		</a>	
+  		<div class="users">
+  			<a href='#'>
+  				<h4 id='mracus'>@mracus</h4>
+  			</a>
+  			<a href='#'>
+  				<h4 id='douglas'>@douglascalhoun</h4>
+  			</a>
+  			<a href='#'>
+  				<h4 id='shawn'>@shawndrost</h4>
+  			</a>
+  			<a href='#'>
+  				<h4 id='sharks'>@sharksforcheap</h4>
+  			</a>
+  		</div>
+  		<div class="all-tweets">
+  			<h2>
+  				All Tweets
+  			</h2>
+  		</div>
   	</div>
   	<div class="tweet-list">
-  		
   	</div>
 
   </div>
@@ -27,6 +39,7 @@
 
       $(document).ready(function(){ //
         var $body = $('body');
+        console.log(streams.users.mracus)
 
         var index = streams.home.length - 1; //When the page is loaded ten objects are created here
         while(index >= 0){
@@ -40,8 +53,6 @@
         var counter = 11; // At page load there are ten objects created, we need to start at iterating at 11
         var pushSingleTweet = function() {
         	var tweetList = streams.home.length - 1;
-        	console.log('cumulative ' + tweetList);
-        	console.log('counter ' + counter)
         	var alreadyDone = 0;
         	for (counter; tweetList > counter; tweetList--) {
         		var tweet = streams.home[tweetList];
@@ -53,8 +64,76 @@
         	counter += alreadyDone;
         }
 
-        setInterval(pushSingleTweet, 2000);
+        var handle = setInterval(pushSingleTweet, 2000);
 
+        $('#mracus').on('click', function () {
+        	$('.tweet').hide();
+        	var mracusTweets = streams.users.mracus;
+        	console.log(mracusTweets);
+        	var list = mracusTweets.length - 1;
+        	console.log(list);
+        	console.log(mracusTweets[list]);
+        	for (list; list >= 0; list--) {
+        		var tweet = mracusTweets[list];
+          		var $tweet = $('<div class="tweet"></div>');
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.appendTo('.tweet-list');
+        	};
+        	clearInterval(handle);
+        	handle = 0;
+
+        });
+
+        $('#douglas').on('click', function () {
+        	$('.tweet').hide();
+        	var douglasTweets = streams.users.douglascalhoun;
+        	console.log(douglasTweets);
+        	var list = douglasTweets.length - 1;
+        	console.log(list);
+        	console.log(douglasTweets[list]);
+        	for (list; list >= 0; list--) {
+        		var tweet = douglasTweets[list];
+          		var $tweet = $('<div class="tweet"></div>');
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.appendTo('.tweet-list');
+        	};
+        	clearInterval(handle);
+        	handle = 0;
+        });
+
+        $('#shawn').on('click', function () {
+        	$('.tweet').hide();
+        	var shawnTweets = streams.users.shawndrost;
+        	console.log(shawnTweets);
+        	var list = shawnTweets.length - 1;
+        	console.log(list);
+        	console.log(shawnTweets[list]);
+        	for (list; list >= 0; list--) {
+        		var tweet = shawnTweets[list];
+          		var $tweet = $('<div class="tweet"></div>');
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.appendTo('.tweet-list');
+        	};
+        	clearInterval(handle);
+        	handle = 0;
+        });
+
+        $('#sharks').on('click', function () {
+        	$('.tweet').hide();
+        	var sharkTweets = streams.users.sharksforcheap;
+        	console.log(sharkTweets);
+        	var list = sharkTweets.length - 1;
+        	console.log(list);
+        	console.log(sharkTweets[list]);
+        	for (list; list >= 0; list--) {
+        		var tweet = sharkTweets[list];
+          		var $tweet = $('<div class="tweet"></div>');
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.appendTo('.tweet-list');
+        	};
+        	clearInterval(handle);
+        	handle = 0;
+        });
         // var tweetChecker = function() {
         // 	var newTweets = setInterval(function() {
         // 		var checkIfNewTweets = streams.home.length - 1;
@@ -67,22 +146,22 @@
         // }
         // tweetChecker();
 
-        $('#updater').on('click', function() {
+        // $('#updater').on('click', function() {
        
-      		var readyTweets = (streams.home.length - 1);
-      		console.log('There are ' + readyTweets + ' tweets ready');
-      		while (readyTweets >= 0 ) {
-      			var tweet = streams.home[readyTweets];
-      			console.log(streams.home[readyTweets].user);
-          		var $tweet = $('<div class="tweet"></div>');
-          		$tweet.text('@' + tweet.user + ': ' + tweet.message);
-      			$tweet.prependTo('.tweet-list');
-          		readyTweets -= 1; 
-      		};
-      		$('#updater').text('');
-      		clearInterval(tweetChecker);
+      		// var readyTweets = (streams.home.length - 1);
+      		// console.log('There are ' + readyTweets + ' tweets ready');
+      		// while (readyTweets >= 0 ) {
+      		// 	var tweet = streams.home[readyTweets];
+      		// 	console.log(streams.home[readyTweets].user);
+        //   		var $tweet = $('<div class="tweet"></div>');
+        //   		$tweet.text('@' + tweet.user + ': ' + tweet.message);
+      		// 	$tweet.prependTo('.tweet-list');
+        //   		readyTweets -= 1; 
+      		// };
+      		// $('#updater').text('');
+      		// clearInterval(tweetChecker);
       			
-       	});
+       	// });
 
       });
 
