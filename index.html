@@ -45,7 +45,7 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div class="tweet"></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - Created at: ' + tweet.created_at);
           $tweet.appendTo('.tweet-list');
           index -= 1;
         }
@@ -76,11 +76,12 @@
         	for (list; list >= 0; list--) {
         		var tweet = mracusTweets[list];
           		var $tweet = $('<div class="tweet"></div>');
-          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + ' - Created at: ' + tweet.created_at);
           		$tweet.appendTo('.tweet-list');
         	};
         	clearInterval(handle);
         	handle = 0;
+        	$('h2').text('@mracus Tweets');
 
         });
 
@@ -94,11 +95,13 @@
         	for (list; list >= 0; list--) {
         		var tweet = douglasTweets[list];
           		var $tweet = $('<div class="tweet"></div>');
-          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + ' - Created at: ' + tweet.created_at);
           		$tweet.appendTo('.tweet-list');
         	};
         	clearInterval(handle);
         	handle = 0;
+        	$('h2').text('@douglascalhoun Tweets');
+
         });
 
         $('#shawn').on('click', function () {
@@ -111,11 +114,13 @@
         	for (list; list >= 0; list--) {
         		var tweet = shawnTweets[list];
           		var $tweet = $('<div class="tweet"></div>');
-          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + ' - Created at: ' + tweet.created_at);
           		$tweet.appendTo('.tweet-list');
         	};
         	clearInterval(handle);
         	handle = 0;
+        	$('h2').text('@shawndrost Tweets');
+
         });
 
         $('#sharks').on('click', function () {
@@ -128,11 +133,13 @@
         	for (list; list >= 0; list--) {
         		var tweet = sharkTweets[list];
           		var $tweet = $('<div class="tweet"></div>');
-          		$tweet.text('@' + tweet.user + ': ' + tweet.message + 'Created at: ' + tweet.created_at);
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message + ' - Created at: ' + tweet.created_at);
           		$tweet.appendTo('.tweet-list');
         	};
         	clearInterval(handle);
         	handle = 0;
+        	$('h2').text('@sharksforcheap Tweets');
+
         });
         // var tweetChecker = function() {
         // 	var newTweets = setInterval(function() {
